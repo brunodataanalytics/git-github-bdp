@@ -37,7 +37,7 @@ Feel free to:
 Have questions or feedback? Reach out to me at:
 
 - **Email**: [brunodataanalyticspro@gmail.com]
-- **LinkedIn**: [[Your LinkedIn Profile](https://www.linkedin.com/in/bruno-de-paula-01a927111/)]
+- **LinkedIn**: [[Bruno de Paula](https://www.linkedin.com/in/bruno-de-paula-01a927111/)]
 
 ---
 
