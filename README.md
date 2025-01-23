@@ -36,8 +36,8 @@ Feel free to:
 
 Have questions or feedback? Reach out to me at:
 
-- **Email**: [your-email@example.com](brunodataanalyticspro@gmail.com)
-- **LinkedIn**: [Your LinkedIn Profile]([https://www.linkedin.com/in/your-profile/](https://www.linkedin.com/in/bruno-de-paula-01a927111/))
+- **Email**: [brunodataanalyticspro@gmail.com]
+- **LinkedIn**: [[Your LinkedIn Profile](https://www.linkedin.com/in/bruno-de-paula-01a927111/)]
 
 ---
 
