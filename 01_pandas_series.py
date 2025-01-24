@@ -183,3 +183,4 @@ ds = ds.apply(pd.Series).stack().reset_index(drop=True)
 # 'drop=True' ensures the old index is discarded.
 
 print(ds)
+# %%
