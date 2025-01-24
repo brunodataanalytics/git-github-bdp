@@ -20,7 +20,8 @@ print('array_series')
 
 # Solution - create a pandas series passing a list of given number of values
 # then convert it to a list using the 'list' class
-# 
+
+import pandas as pd
 
 array_series = pd.Series([7, 2, 4, 7])
 regular_list = list(array_series)
@@ -34,6 +35,8 @@ print(type(regular_list))
 # ds = ds1 - ds2: This line subtracts the second Series object from the first Series object element-wise, resulting in a new Series object 'ds' with the values [1, 1, 1, 1, 1].
 # ds = ds1 * ds2: This line multiplies the two Series objects element-wise, resulting in a new Series object 'ds' with the values [2, 12, 30, 56, 90].
 # ds = ds1 / ds2: This line divides the first Series object by the second Series object element-wise, resulting in a new Series object 'ds' with the values [2.0, 1.333, 1.2, 1.143, 1.111].
+
+import pandas as pd
 
 ds1 = pd.Series([2, 4, 6, 8, 10])
 ds2 = pd.Series([1, 3, 5, 7, 9])
@@ -67,6 +70,8 @@ print(ds)
 # print(ds1 < ds2): This line compares the two Series objects using the '<' operator, resulting in a new Series object with boolean
 # values indicating whether the corresponding elements in ‘ds1’ are less than those in ‘ds2’ or not. The output will be:
 # [False, False, False, False, False]
+
+import pandas as pd
 
 ds1 = pd.Series([2, 4, 6, 8, 10])
 ds2 = pd.Series([1, 3, 5, 7, 10])
@@ -116,3 +121,13 @@ import pandas as pd
 ds = pd.Series([100, 200, 'python', 300.12, 400])
 ds = pd.to_numeric(ds, errors='coerce')
 ds
+# %%
+# 8. Write a Pandas program to convert the first column of a DataFrame as a Series.
+
+import pandas as pd
+
+df = pd.DataFrame({'col1': [1, 2, 3, 4, 7, 11],
+                   'col2': [4, 5, 6, 9, 5, 0],
+                   'col3': [7, 5, 8, 12, 1, 11]}
+                   )
+df
