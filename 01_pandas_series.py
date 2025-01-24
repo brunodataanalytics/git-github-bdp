@@ -184,3 +184,76 @@ ds = ds.apply(pd.Series).stack().reset_index(drop=True)
 
 print(ds)
 # %%
+#11. Write a Pandas program to sort a given Series.
+import pandas as pd
+
+# Step 1: Create a pandas Series with mixed types of data as strings
+ds = pd.Series(['100', '200', 'python', '300.12', '400'])
+
+# Step 2: Sort the values in the Series
+# Since the data is stored as strings, the sorting will be lexicographical (alphabetical order),
+# not numerical. This means numbers will be sorted as text (e.g., "100" comes before "300.12").
+ds = pd.Series(ds).sort_values()
+print(ds)
+# %%
+# 12. Write a Pandas program to add some data to an existing Series.
+import pandas as pd
+
+# Step 1: Create a pandas Series with mixed data types as strings
+ds = pd.Series(['100', '200', 'python', '300.12', '400'])
+
+# Step 2: Concatenate the original Series with a new Series containing additional values ('500' and 'php')
+# - 'pd.concat' is used to combine two Series objects into one.
+# - 'ignore_index=True' ensures that the index is reset for the resulting Series.
+ds = pd.concat([ds, pd.Series(['500', 'php'])], ignore_index=True)
+ds
+# %%
+# 13. Write a Pandas program to create a subset of a given series based on value and condition.
+
+# Sample Output:
+# Original Data Series:
+# 0      0
+# 1      1
+# 2      2
+#.........
+# 10    10
+import pandas as pd
+
+# Step 1: Create a pandas Series with numeric values from 1 to 10
+ds = pd.Series([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+
+# Step 2: Define the threshold value 'n' for filtering
+n = 4
+
+# Step 3: Create a subset of the Series
+# - 'ds < n' generates a boolean mask (True for values less than 'n', False otherwise).
+# - Using this mask, the Series is filtered to only include values less than 'n'.
+ds = ds[ds < n]
+ds
+# %%
+# 14. Write a Pandas program to change the order of index of a given series.
+import pandas as pd
+
+# Step 1: Create a pandas Series with numeric values from 1 to 10
+ds = pd.Series([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+
+# Step 2: Sort the Series by its index in descending order
+# - 'sort_index()' reorders the Series based on its index.
+# - 'ascending=False' specifies that the sorting should be done in descending order.
+ds = ds.sort_index(ascending=False)
+
+# The Series is now sorted so that the last index (9) is first, and the first index (0) is last.
+ds
+
+# %%
+# 15. Write a Pandas program to create the mean and standard deviation of the data of a given Series.
+import pandas as pd
+
+# Step 1: Create a pandas Series with numeric values from 1 to 10
+ds = pd.Series([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+
+# Step 2: Calculate and print the mean and standard deviation
+# - 'ds.mean()' computes the mean (average) of the Series.
+# - 'ds.std()' computes the standard deviation of the Series.
+# - ':.5f' formats the standard deviation to 5 decimal places.
+print(f'Mean value {ds.mean()}, Standard deviation {ds.std():.5f}')
