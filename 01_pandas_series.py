@@ -257,3 +257,62 @@ ds = pd.Series([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
 # - 'ds.std()' computes the standard deviation of the Series.
 # - ':.5f' formats the standard deviation to 5 decimal places.
 print(f'Mean value {ds.mean()}, Standard deviation {ds.std():.5f}')
+
+# %%
+# 16. Write a Pandas program to get the items of a given series not present in another given series.
+import pandas as pd
+
+ds1 = pd.Series([1, 2, 3, 4, 5])
+ds2 = pd.Series([2, 4, 6, 8, 10])
+
+# Get items in ds1 that are not in ds2
+# This is done by applying a boolean mask to the original Series object using the .isin() method to check which elements in 'ds1' are present in 'ds2',
+# and then negating the boolean mask using the tilde (~) operator.
+ds_new = ds1[~ds1.isin(ds2)]
+ds_new
+
+# %%
+# 17. Write a Pandas program to get the items which are not common of two given series.
+import pandas as pd
+import numpy as np
+
+ds1 = pd.Series([1, 2, 3, 4, 5])
+ds2 = pd.Series([2, 4, 6, 8, 10])
+# Get the items which are not common between series1 and series2
+# '[ds1[~ds1.isin(ds2)]' items that are in series 1 and not in 2
+# 'ds2[~ds2.isin(ds1)]]' items that are in series 2 and not in 1
+result = pd.concat([ds1[~ds1.isin(ds2)], ds2[~ds2.isin(ds1)]])
+result
+# %%
+# 18. Write a Pandas program to compute the minimum, 25th percentile, median, 75th, and maximum of a given series.
+import pandas as pd
+import numpy as np
+
+# Create a random number generator with a fixed seed (100)
+num_state = np.random.RandomState(100)
+
+# Generate a series of 20 random numbers from a normal distribution (mean=10, std=4)
+num_series = pd.Series(num_state.normal(10, 4, 20))
+
+# Calculate the percentiles: minimum (0%), 25th percentile, median (50%), 75th percentile, and maximum (100%)
+result = np.percentile(num_series, q=[0, 25, 50, 75, 100])
+
+# Print the results
+print('Minimum, 25th percentile, median, 75th, and maximum of a given series:')
+print(result)
+
+# %%
+
+# 19. Write a Pandas program to calculate the frequency counts of each unique value of a given series.
+import pandas as pd
+import numpy as np
+
+# Generate a series of random digits as strings
+num_series = pd.Series(np.take(list('0123456789'), np.random.randint(10, size=20)))
+
+# Get the counts of unique values in the series
+result = num_series.value_counts()
+
+print(num_series)
+print(result)
+
