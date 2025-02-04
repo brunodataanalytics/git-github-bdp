@@ -316,3 +316,136 @@ result = num_series.value_counts()
 print(num_series)
 print(result)
 
+
+# %%
+# 20. Write a Pandas program to display most frequent value in a given series and replace everything else as 'Other' in the series.
+import pandas as pd
+import numpy as np
+
+# Create a pandas Series with 10 random integers between 1 and 4 (inclusive)
+num_series = pd.Series(np.random.randint(1, 5, [10]))
+
+# Identify the most frequent value in the series and replace all other values with 'Other'
+# - num_series.value_counts() counts how many times each value appears and sorts them in descending order.
+# - num_series.value_counts().index[:1] extracts the most frequent value (the first element of the index).
+# - num_series.isin(...) creates a boolean mask that is True where the series values are in the list of the most frequent value.
+# - The ~ operator negates the boolean mask, so it becomes True for values that are NOT the most frequent.
+# - The assignment replaces all values that are not the most frequent with the string 'Other'.
+num_series[~num_series.isin(num_series.value_counts().index[:1])] = 'Other'
+
+# Print the updated series
+print(num_series)
+
+# %%
+#21. Write a Pandas program to find the positions of numbers that are multiples of 5 of a given series.
+
+import pandas as pd
+import numpy as np
+
+# Create a pandas Series with 9 random integers between 1 and 9 (inclusive)
+num_series = pd.Series(np.random.randint(1, 10, 9))
+# Print the original Series to see the random numbers generated
+print(num_series)
+
+# Create a boolean mask where each element is True if it is a multiple of 5, and False otherwise.
+# The condition (num_series % 5 == 0) checks if a number leaves a remainder of 0 when divided by 5.
+# np.where returns the indices where this condition is True.
+result = np.where(num_series % 5 == 0)
+
+# Print the indices of the Series where the numbers are multiples of 5
+print(result)
+
+# %%
+#22. Write a Pandas program to extract items at given positions of a given series.
+import pandas as pd
+
+# Create a pandas Series by converting the string into a list of characters.
+num_series = pd.Series(list('2390238923902390239023'))
+
+# Define a list of integer positions for the elements we want to extract.
+element_pos = [0, 2, 6, 11, 21]
+
+# Use .iloc for positional indexing to extract elements at the specified positions.
+result = num_series.iloc[element_pos]
+
+# Print the extracted elements.
+print(result)
+# %%
+#23. Write a Pandas program to get the positions of items of a given series in another given series.
+import pandas as pd
+import numpy as np
+
+# Create the first Series with values 1 through 10.
+series1 = pd.Series([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+# Create the second Series with a subset of numbers that we want to locate in series1.
+series2 = pd.Series([1, 3, 5, 7, 10])
+
+# Convert series1 into an Index object and for each element in series2, find its position in series1.
+# pd.Index(series1) creates an Index object from series1.
+# .get_loc(i) returns the integer location of the element i in the index.
+# The list comprehension loops over each element i in series2 and collects the positions.
+result = [pd.Index(series1).get_loc(i) for i in series2]
+
+# Print the list of positions corresponding to each element of series2 in series1.
+print(result)
+# %%
+#24. Write a  Pandas program convert the first and last character of each word to upper case in each word of a given series.
+import pandas as pd
+import numpy as np
+
+
+# Define a function that takes a string and returns the modified string
+def transform_string(x):
+    # Capitalize the first character, keep the middle part unchanged,
+    # and capitalize the last character.
+    return x[0].upper() + x[1:-1] + x[-1].upper()
+
+# Create the pandas Series
+series1 = pd.Series(['php', 'python', 'java', 'c#'])
+
+# #the map() function applies a given function (in this case, the transform_string) to every element in the Series.
+
+result = series1.map(transform_string)
+
+# Print the result
+print(result)
+# %%
+#25. Write a Pandas program to calculate the number of characters in each word in a given series.
+import pandas as pd
+
+# Create a pandas Series containing several strings.
+series1 = pd.Series(['php', 'python', 'java', 'c#'])
+
+# Use the .map() method to apply a function to each element of the Series.
+# The lambda function takes each string 'x' and returns its length using len(x).
+result = series1.map(lambda x: len(x))
+
+# Print the resulting Series, which contains the lengths of the strings from series1.
+print(result)
+
+# %%
+#26. Write a Pandas program to compute difference of differences between consecutive numbers of a given series.
+import pandas as pd
+
+# Create a pandas Series with a list of numbers.
+series1 = pd.Series([1, 3, 5, 8, 10, 11, 15])
+
+# Calculate the first differences between consecutive elements.
+# .diff() computes the difference between each element and its previous element.
+# The first element will be NaN because there is no previous element.
+first_diff = series1.diff()
+print(first_diff.tolist())
+# Output: [NaN, 2.0, 2.0, 3.0, 2.0, 1.0, 4.0]
+# Explanation:
+# 3 - 1 = 2, 5 - 3 = 2, 8 - 5 = 3, 10 - 8 = 2, 11 - 10 = 1, 15 - 11 = 4
+
+# Calculate the second differences between consecutive first differences.
+# .diff().diff() computes the differences of the first differences.
+# Again, the first element will be NaN, and the next will be NaN as well since it compares with NaN.
+second_diff = series1.diff().diff()
+print(second_diff.tolist())
+# Output: [NaN, NaN, 0.0, 1.0, -1.0, -1.0, 3.0]
+# Explanation:
+# The differences of the first differences: (2-2)=0, (3-2)=1, (2-3)=-1, (1-2)=-1, (4-1)=3.
+
+# %%
